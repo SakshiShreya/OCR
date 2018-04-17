@@ -5,7 +5,7 @@ def findSpaces(line, thres_space):
 	
 	# making vertical projections
 	
-	verProj = cv2.reduce(line, 0, cv2.cv.CV_REDUCE_AVG)
+	verProj = cv2.reduce(line, 0, cv2.REDUCE_AVG)
 
 	# make hist - same dimension as horProj - if 0 (space), then True, else False
 	th = 0; # black pixels threshold value. this represents the space lines
@@ -43,7 +43,7 @@ def SpacesMedian(line):
 	
 	# making vertical projections
 	
-	verProj = cv2.reduce(line, 0, cv2.cv.CV_REDUCE_AVG)
+	verProj = cv2.reduce(line, 0, cv2.REDUCE_AVG)
 
 	# make hist - same dimension as horProj - if 0 (space), then True, else False
 	th = 0; # black pixels threshold value. this represents the space lines
@@ -79,7 +79,7 @@ def get_spaces_threshold(ycoords, img_for_det) :
 	## Find Median for setting threshold
 	medianList = []
 	for i in range ( 0, len(ycoords)-1 ):
-		line = img_for_det[range(ycoords[i],ycoords[i+1])]
+		line = img_for_det[range(int(ycoords[i]),int(ycoords[i+1]))]
 		medianList.append(SpacesMedian(line))
 	
 	#medianList contains count of each blank columns found in all lines

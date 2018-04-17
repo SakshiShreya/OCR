@@ -13,8 +13,8 @@ from nn_two_stage.second_nn import get_let_from_2nd_nn_ceg
 def get_string_from_nn(all_letters):
 	net = network2.Network([1024, 30, 66], cost=network2.CrossEntropyCost)
 	
-	biases_saved = np.load('biases.npy')
-	weights_saved = np.load('weights.npy')
+	biases_saved = np.load('biases.npy', encoding = 'latin1')
+	weights_saved = np.load('weights.npy', encoding = 'latin1')
 
 	#all_letters = np.load('all_letters.npy')
 	#all_letters = all_letters.tolist()

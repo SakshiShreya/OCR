@@ -10,7 +10,7 @@ def get_characters(raw_image,max_line_height,line,word):
 
 	mo_image = raw_image.copy()
 	contour0 = cv2.findContours(mo_image.copy(),cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
-	contours = [cv2.approxPolyDP(cnt,2,True) for cnt in contour0[0]]
+	contours = [cv2.approxPolyDP(cnt,2,True) for cnt in contour0[1]]
 
 	# === Extract Bounding Rectangles
 	maxArea = 0
@@ -73,10 +73,10 @@ def get_characters(raw_image,max_line_height,line,word):
 
 	#raw_input('>')
 	for i in rect:
-		x = i[0]
-		y = i[1]
-		w = i[2]
-		h = i[3]
+		x = int(i[0])
+		y = int(i[1])
+		w = int(i[2])
+		h = int(i[3])
 		
 		p1 = (x,y)
 		p2 = (x+w,y+h)
@@ -109,13 +109,12 @@ def get_characters(raw_image,max_line_height,line,word):
 			#add border which results adding of padding
 			
 			remaining_pixels_w = abs(32 - letter.shape[1])
-			add_left = remaining_pixels_w / 2
+			add_left = remaining_pixels_w // 2
 			add_right = remaining_pixels_w - add_left
 
 			remaining_pixels_h = abs(32 - letter.shape[0])
-			add_top = remaining_pixels_h / 2
+			add_top = remaining_pixels_h // 2
 			add_bottom = remaining_pixels_h - add_top
-
 			letter = cv2.copyMakeBorder(letter, add_top, add_bottom, add_left, add_right, cv2.BORDER_CONSTANT, value=(0,0,0))
 			# =================
 			
@@ -130,11 +129,11 @@ def get_characters(raw_image,max_line_height,line,word):
 			
 			#add border which results adding of padding
 			remaining_pixels_w = abs(32 - letter.shape[1])
-			add_left = remaining_pixels_w / 2
+			add_left = remaining_pixels_w // 2
 			add_right = remaining_pixels_w - add_left
 
 			remaining_pixels_h = abs(32 - letter.shape[0])
-			add_top = remaining_pixels_h / 2
+			add_top = remaining_pixels_h // 2
 			add_bottom = remaining_pixels_h - add_top
 
 			letter = cv2.copyMakeBorder(letter, add_top, add_bottom, add_left, add_right, cv2.BORDER_CONSTANT, value=(0,0,0))
@@ -145,11 +144,11 @@ def get_characters(raw_image,max_line_height,line,word):
 			
 			#add border which results adding of padding
 			remaining_pixels_w = abs(32 - letter.shape[1])
-			add_left = remaining_pixels_w / 2
+			add_left = remaining_pixels_w // 2
 			add_right = remaining_pixels_w - add_left
 
 			remaining_pixels_h = abs(32 - letter.shape[0])
-			add_top = remaining_pixels_h / 2
+			add_top = remaining_pixels_h // 2
 			add_bottom = remaining_pixels_h - add_top
 
 			letter = cv2.copyMakeBorder(letter, add_top, add_bottom, add_left, add_right, cv2.BORDER_CONSTANT, value=(0,0,0))

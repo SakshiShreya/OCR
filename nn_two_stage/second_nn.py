@@ -32,8 +32,8 @@ def get_let_from_2nd_nn_ijltIL1(letter):
 	
 	net = network2.Network([1024, 30, 7], cost=network2.CrossEntropyCost)
 	
-	biases_saved = np.load('nn_two_stage/biases_ijltIL1.npy')
-	weights_saved = np.load('nn_two_stage/weights_ijltIL1.npy')
+	biases_saved = np.load('nn_two_stage/biases_ijltIL1.npy', encoding = 'latin1')
+	weights_saved = np.load('nn_two_stage/weights_ijltIL1.npy', encoding = 'latin1')
 	
 	output = np.argmax(net.feedforward(letter, biases_saved = biases_saved, weights_saved = weights_saved))
 	
@@ -43,8 +43,8 @@ def get_let_from_2nd_nn_ceg(letter):
 	
 	net = network2.Network([1024, 30, 3], cost=network2.CrossEntropyCost)
 	
-	biases_saved = np.load('nn_two_stage/biases_ceg.npy')
-	weights_saved = np.load('nn_two_stage/weights_ceg.npy')
+	biases_saved = np.load('nn_two_stage/biases_ceg.npy', encoding = 'latin1')
+	weights_saved = np.load('nn_two_stage/weights_ceg.npy', encoding = 'latin1')
 	
 	output = np.argmax(net.feedforward(letter, biases_saved = biases_saved, weights_saved = weights_saved))
 	

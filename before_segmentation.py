@@ -36,7 +36,7 @@ def getTransformationMatrix(img):
 	# To draw the rotated box and save the png image, uncomment below
 	drawrect = img.copy()
 	drawrect = cv2.cvtColor(drawrect, cv2.COLOR_GRAY2BGR)
-	box = cv2.cv.BoxPoints(rect)
+	box = cv2.boxPoints(rect)
 	box = np.int0(box) # box now has four vertices of rotated rectangle
 	cv2.drawContours(drawrect,[box],0,(0,0,255),10)
 	cv2.imwrite('rotated_rect.png', drawrect)

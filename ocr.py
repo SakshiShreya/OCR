@@ -17,9 +17,9 @@ def perform_ocr(img_url):
 	#get all the words (as an numpy image array), words on each line, and maximum height on that line
 	all_words, words_on_line, max_height_on_line = get_words(raw_image)
 
-	print "no. of lines = ",len(words_on_line)
-	print words_on_line
-	print "no. of words = ",len(all_words)
+	print ("no. of lines = ",len(words_on_line))
+	print (words_on_line)
+	print ("no. of words = ",len(all_words))
 
 	#to write the output into a file
 	fp = open("output.txt", 'w')
@@ -32,7 +32,7 @@ def perform_ocr(img_url):
 			
 			all_characters = get_characters(all_words[count],max_height_on_line[i],i,j)
 			
-			print get_string_from_nn(all_characters),
+			print (get_string_from_nn(all_characters), end='')
 			fp.write(get_string_from_nn(all_characters))
 			fp.write(" ")
 				
@@ -42,7 +42,7 @@ def perform_ocr(img_url):
 			
 			count = count + 1
 			
-		print "\n"
+		print ("\n")
 		fp.write("\n")
 
 	fp.close()

@@ -4,7 +4,7 @@ import numpy as np
 def findLines(bw_image, LinesThres):
 	# making horizontal projections
 	
-	horProj = cv2.reduce(bw_image, 1, cv2.cv.CV_REDUCE_AVG)
+	horProj = cv2.reduce(bw_image, 1, cv2.REDUCE_AVG)
 
 	# make hist - same dimension as horProj - if 0 (space), then True, else False
 	th = 0; # black pixels threshold value. this represents the space lines
@@ -41,7 +41,7 @@ def findLines(bw_image, LinesThres):
 def LinesMedian(bw_image):
 	# making horizontal projections
 	
-	horProj = cv2.reduce(bw_image, 1, cv2.cv.CV_REDUCE_AVG)
+	horProj = cv2.reduce(bw_image, 1, cv2.REDUCE_AVG)
 
 	# make hist - same dimension as horProj - if 0 (space), then True, else False
 	th = 0; # black pixels threshold value. this represents the space lines
@@ -76,6 +76,6 @@ def get_lines_threshold(percent, img_for_det):
 	ThresPercent = percent
 	LinMed = LinesMedian(img_for_det)
 	LinMed = sorted(LinMed)
-	LinesThres = LinMed[len(LinMed)/3]*(ThresPercent/100.0)
+	LinesThres = LinMed[len(LinMed)//3]*(ThresPercent/100.0)
 	LinesThres = int(LinesThres)
 	return LinesThres

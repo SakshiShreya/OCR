@@ -44,6 +44,7 @@ def get_words(raw_image):
 	# save image with lines printed ==========
 	img_with_lines = img_for_ext.copy()
 	for i in ycoords:
+		i = int(i)
 		cv2.line(img_with_lines,(0,i),(img_with_lines.shape[1],i),255,2)
 	cv2.imwrite('img_with_lines.png', img_with_lines)
 	#==========
@@ -53,13 +54,11 @@ def get_words(raw_image):
 	#calculate max_line_height on each line
 	max_height_on_line = []
 	for i in range ( 0, len(ycoords)-1 ): #iterate line
-		
-		line = img_for_ext[ycoords[i] : ycoords[i+1]]
-		print line
+		line = img_for_ext[int(ycoords[i]) : int(ycoords[i+1])]
 
 		# to find max_line_height of each line we find contours again in this line only
 		contour0 = cv2.findContours(line.copy(),cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
-		contours = [cv2.approxPolyDP(cnt,2,True) for cnt in contour0[0]]
+		contours = [cv2.approxPolyDP(cnt,2,True) for cnt in contour0[1]]
 
 		# === Extract Bounding Rectangles
 		maxArea = 0
@@ -103,7 +102,7 @@ def get_words(raw_image):
 
 	for i in range ( 0, len(ycoords)-1 ): #iterate line
 
-		line = img_for_det[range(ycoords[i],ycoords[i+1])]
+		line = img_for_det[range(int(ycoords[i]),int(ycoords[i+1]))]
 		#cv2.imwrite('img/'+str(i)+'.png', line)
 		
 		#finding the x-coordinates of the spaces
@@ -111,6 +110,7 @@ def get_words(raw_image):
 		
 		#print len(xcoords)
 		for x in xcoords:
+			x = int(x)
 			cv2.line(line, (x,0), (x,line.shape[0]), 255, 2)
 		cv2.imwrite("img/i"+str(i)+".png", line)
 		
@@ -119,9 +119,9 @@ def get_words(raw_image):
 		for j in range (0, len(xcoords)-1 ): #iterate words
 			
 			#use image with no smoothing
-			line = img_for_ext[range(ycoords[i],ycoords[i+1])]
+			line = img_for_ext[range(int(ycoords[i]),int(ycoords[i+1]))]
 			
-			word = line[:, xcoords[j]: xcoords[j+1]]
+			word = line[:, int(xcoords[j]): int(xcoords[j+1])]
 			all_words.append(word)
 			#cv2.imwrite('img/words/'+str(number_of_words)+'.png', word)
 			
