@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 
 def image_for_detection(raw_image):
-
 	#remove tiny noises by blurring
 	sm_image = cv2.GaussianBlur(raw_image,(5,5),0)
 	

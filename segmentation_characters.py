@@ -91,7 +91,7 @@ def get_characters(raw_image,max_line_height,line,word):
 		
 		#if errors occurs due to the unwanted artifacts, then the height will somehow become zero.
 		if (o_height == 0):
-			letter = np.zeros((32, 32, 1), np.uint8)
+			letter = np.zeros((28, 28, 1), np.uint8)
 			o_height = letter.shape[0]
 			o_width = letter.shape[1]
 		
@@ -102,17 +102,17 @@ def get_characters(raw_image,max_line_height,line,word):
 
 			aspectRatio = o_width / (o_height*1.0)
 			
-			height = 26
+			height = 26															# 28
 			width = int(height * aspectRatio)
 			letter = cv2.resize(letter, (width,height))
 			
 			#add border which results adding of padding
 			
-			remaining_pixels_w = abs(32 - letter.shape[1])
+			remaining_pixels_w = abs(28 - letter.shape[1])
 			add_left = remaining_pixels_w // 2
 			add_right = remaining_pixels_w - add_left
 
-			remaining_pixels_h = abs(32 - letter.shape[0])
+			remaining_pixels_h = abs(28 - letter.shape[0])
 			add_top = remaining_pixels_h // 2
 			add_bottom = remaining_pixels_h - add_top
 			letter = cv2.copyMakeBorder(letter, add_top, add_bottom, add_left, add_right, cv2.BORDER_CONSTANT, value=(0,0,0))
@@ -128,11 +128,11 @@ def get_characters(raw_image,max_line_height,line,word):
 			letter = cv2.resize(letter, (width,height))
 			
 			#add border which results adding of padding
-			remaining_pixels_w = abs(32 - letter.shape[1])
+			remaining_pixels_w = abs(28 - letter.shape[1])
 			add_left = remaining_pixels_w // 2
 			add_right = remaining_pixels_w - add_left
 
-			remaining_pixels_h = abs(32 - letter.shape[0])
+			remaining_pixels_h = abs(28 - letter.shape[0])
 			add_top = remaining_pixels_h // 2
 			add_bottom = remaining_pixels_h - add_top
 
@@ -143,11 +143,11 @@ def get_characters(raw_image,max_line_height,line,word):
 			letter = cv2.resize(letter, (26,26))
 			
 			#add border which results adding of padding
-			remaining_pixels_w = abs(32 - letter.shape[1])
+			remaining_pixels_w = abs(28 - letter.shape[1])
 			add_left = remaining_pixels_w // 2
 			add_right = remaining_pixels_w - add_left
 
-			remaining_pixels_h = abs(32 - letter.shape[0])
+			remaining_pixels_h = abs(28 - letter.shape[0])
 			add_top = remaining_pixels_h // 2
 			add_bottom = remaining_pixels_h - add_top
 
@@ -158,9 +158,9 @@ def get_characters(raw_image,max_line_height,line,word):
 		#cv2.imwrite('img/'+str(line)+'_'+str(word)+'_'+str(count)+'.png', letter)
 		count = count + 1
 		
-		letter = letter / 255.0
+		# letter = letter / 255.0
 		
-		letter = np.reshape(letter,(1024,1))
+		# letter = np.reshape(letter,(1024,1))
 		
 		all_letters.append(letter)
 
