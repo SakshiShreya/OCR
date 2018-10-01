@@ -8,10 +8,12 @@ from before_segmentation import rotate
 
 
 from functions_lines import findLines
-from functions_lines import get_lines_threshold
+# from functions_lines import get_lines_threshold
 
 from functions_words import findSpaces
 from functions_words import get_spaces_threshold
+
+from testing import findlines
 
 
 def get_words(raw_image):
@@ -36,11 +38,12 @@ def get_words(raw_image):
 	#for debugging purpose, we also write the images to files
 	cv2.imwrite('img_for_detection.png', img_for_det)
 	cv2.imwrite('img_for_extraction.png', img_for_ext)
-
+	
 	#get threshold to determine how much gap should be considered as the line gap
-	LinesThres = get_lines_threshold(40, img_for_det)
-	ycoords = findLines(img_for_det, LinesThres)
-
+	# LinesThres = get_lines_threshold(40, img_for_det)
+	#####################################################################
+	ycoords = findLines(img_for_det)
+	
 	# save image with lines printed ==========
 	img_with_lines = img_for_ext.copy()
 	for i in ycoords:

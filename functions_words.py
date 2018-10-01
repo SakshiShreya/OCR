@@ -9,7 +9,9 @@ def findSpaces(line, thres_space):
 
 	# make hist - same dimension as horProj - if 0 (space), then True, else False
 	th = 0; # black pixels threshold value. this represents the space lines
-	hist = verProj <= th;
+	hist = verProj <= th
+	letterLocations1 = verProj > th
+	letterLocations = 1 * letterLocations1
 
 	#Get mean coordinate of white white pixels groups
 	xcoords = []

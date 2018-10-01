@@ -7,16 +7,8 @@
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-from flask import Flask, request, render_template, jsonify
-# from scipy.misc import imresize
 import numpy as np
-import argparse
 from keras.models import model_from_yaml
-import re
-import base64
-import pickle
-# import cv2
-
 
 # In[2]:
 
@@ -48,7 +40,6 @@ def load_model(bin_dir):
 def predict(x, model, mapping):
 
     # Visualize new array
-    # x = cv2.resize(x,(28,28))
 
     # reshape image data for use in neural network
     x = x.reshape(1,28,28,1)
@@ -72,13 +63,9 @@ def predict(x, model, mapping):
 # mapping = pickle.load(open('%s/mapping.p' % 'bin/', 'rb'))
 
 # # In[28]:
-
-
 # x = imread('a.jpg', mode='L')
 
 
 # # In[29]:
-
-
 # print(predict(x))
 

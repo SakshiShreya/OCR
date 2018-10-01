@@ -4,6 +4,8 @@ import numpy as np
 def image_for_detection(raw_image):
 	#remove tiny noises by blurring
 	sm_image = cv2.GaussianBlur(raw_image,(5,5),0)
+	sm_image = cv2.medianBlur(sm_image, 7)
+	# Best blur values by hit and trial
 	
 	#binarize
 	ret, bw_image = cv2.threshold(sm_image,0,255,cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
@@ -11,13 +13,15 @@ def image_for_detection(raw_image):
 	#dilate
 	kernel = np.ones((2,2),np.uint8)
 	bw_image = cv2.dilate(bw_image,kernel)
-	
+
 	return bw_image
 	
 def image_for_extraction(raw_image):
 	
 	raw_image = cv2.GaussianBlur(raw_image,(3,3),0)
+	# Gives better output without median blur
 	
+	# no_sm_bw_image = cv2.adaptiveThreshold(raw_image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 115, 20)
 	ret,no_sm_bw_image = cv2.threshold(raw_image,0,255,cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
 	
 	return no_sm_bw_image

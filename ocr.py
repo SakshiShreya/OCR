@@ -1,6 +1,11 @@
 #The starting point of the backend works
 #The image URL from UI is fed to the perform_ocr() here
 
+
+
+
+# function_words me se print ho raha h
+
 import cv2
 
 from segmentation_words import get_words
@@ -18,7 +23,6 @@ def perform_ocr(img_url):
 	all_words, words_on_line, max_height_on_line = get_words(raw_image)
 
 	print ("no. of lines = ",len(words_on_line))
-	print (words_on_line)
 	print ("no. of words = ",len(all_words))
 
 	#to write the output into a file
@@ -32,7 +36,7 @@ def perform_ocr(img_url):
 			
 			all_characters = get_characters(all_words[count],max_height_on_line[i],i,j)
 			
-			print (get_string_from_nn(all_characters), end='')
+			print (get_string_from_nn(all_characters), end=' ')
 			fp.write(get_string_from_nn(all_characters))
 			fp.write(" ")
 				
